@@ -81,8 +81,8 @@ ggplot(social_security_data_long) +
 When there are multiple tables on the website, scraping them becomes a bit more complicated. Let's work through an exemplary scenario: Scraping a table from Wikipedia with a list of the most populated cities in the United States.
 
 ```{r}
-url <- "https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population"
-html <- read_html(url)
+
+html <- read_html("https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population")
 tables <- html_table(html, fill=TRUE)
 class(tables)
 length(tables)
@@ -93,7 +93,7 @@ The function returns 10 different tables. The option `fill=TRUE` is used because
 One option is to go through these tables in this list manually and select the correct one:
 
 ```{r}
-print(tables[3]) # position 3 happens to be the correct table (checked 29/10/2024)
+table_raw <- print(tables[3]) # position 3 happens to be the correct table (checked 29/10/2024)
 ```
 
 Alternatively, the table of interest can be identified directly with a right-click and "Inspect" or "Inspect Element" in the browser. Clicking on the relevant part of the page's code then allows to copy identifiers such as the CSS selector.
@@ -103,13 +103,15 @@ You can also look at the full source code of the website to find the relevant se
 Now that we know what we're looking for, let's use `html_elements()` to identify all the elements of the page that have that CSS class (note that we use a dot before the name of the class because the R function expects CSS notation). Whereas we will find several elements with the CSS selector ".wikitable" which we would have to search subsequently, we will only find one with the very specific selector obtained with inspect element.
 
 ```{r}
-table_raw <- html_elements(html, css = "_____")
-length(table_raw) # now a list of length 1
+table_raw <- html_elements(html, css = "sortable wikitable sticky-header-multi static-row-numbers sort-under col1left col2center")
+print(table_raw) # now a list of length 1
 ```
 
 Transforming into a tibble with `html_table()`:
 
 ```{r}
+html <- read_html("https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population")
+
 data_pop <- html_table(table_raw[[1]], fill=TRUE)
 data_pop
 ```
@@ -117,6 +119,8 @@ data_pop
 As in the previous case, we still need to clean the data before we can use it. For this particular example, let's see if this dataset provides evidence in support of [Zipf's law for population ranks](https://en.wikipedia.org/wiki/Zipf%27s_law). Keeping only the columns of interest and transforming into a tibble:
 
 ```{r}
+
+
 data_pop <- data_pop %>% select(c("City", "2023estimate"))
 data_pop
 ```

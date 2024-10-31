@@ -7,10 +7,11 @@ output: html_document
 
 
 ```{r}
-# install.packages("plotly") ## IF NOT ALREADY INSTALLED
+install.packages("plotly") ## IF NOT ALREADY INSTALLED
 library(tidyverse)
 library(plotly)
 library(scales)
+library(ggplot2)
 ```
 
 
@@ -33,29 +34,40 @@ end <- c(start[-1], as.Date("2016-10-01"))
 party <- c("D", "R", "D", "D", "R", "R", "D", "R", "R", "D", "R", "D")
 pres <- data.frame(name, start, end, party, stringsAsFactors=F)
 ```
+install.packages("ggplot2")   # If not already installed
+install.packages("readr") 
 
 ![](04-unemployment.png)
 
 ```{r}
+
 # Define range of unemployment and date variables
-
-
+range(unemp$unemp, na.rm = TRUE)
+range(unemp$date, na.rm = TRUE)
 
 # Creating a line-plot with unemployment and date
-
-
-
+ggplot(data = unemp, aes(x = date, y = unemp)) + 
+  geom_line(color = "black") +  
+  labs(title = "",  
+       x = "",
+       y = "Unemployment Rate") +
+  theme_minimal() +
+  
 # Adding the rectangle geometry (set axes limits so that background covers entire plot)
+geom_rect(data = pres, aes(xmin = start, xmax = end, ymin = -Inf, ymax = Inf, fill = party), alpha = 0.2) +
+    
 
 
+  # Add vertical dotted lines at the start of each presidential term
+  geom_vline(data = pres, aes(xintercept = start), linetype = "dotted", color = "gray") +
 
-# Adding president names
-
-
+  # Add president names at the start of each term
+  geom_text(data = pres, aes(x = start, y = max(unemp$unemp) * 0.95, label = name),
+           size = 2, vjust = -0.5, color = "black", angle = 90) +
 
 # Adding lines to separate presidencies
-
-
+geom_rect(data = pres, aes(xmin = start, xmax = end, ymin = -Inf, ymax = Inf, fill = party, alpha = 0.2) ) +
+ scale_fill_manual(values = c("D" = "blue", "R" = "red"), guide = FALSE) 
 
 # Finally, moving legend and removing x axis title
 
