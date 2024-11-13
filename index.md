@@ -199,7 +199,7 @@ This week we cover the basics of web scraping for tables and unstructured data f
 
 #### Seminar
 
-- Code: [Scraping unstructured data](x), [solution](x)
+- Code: [Scraping unstructured data](week05/03-exercises-scraping-unstructured-data.Rmd), [solution](week05/03-exercises-scraping-unstructured-data-solution.Rmd)
 
 
 #### Reading
@@ -228,8 +228,8 @@ Continuing from the material covered in Week 5, we will learn the advanced topic
 
 #### Lecture
 
-- [Slides](x)
-- Code: [Scraping RSS](x), [introduction to RSelenium](x), [RSelenium example with the LSE website](x)
+- [Slides](week07/MY472-week07-scraping-2.pdf)
+- Code: [Scraping RSS](week07/01-newspaper-rss.Rmd), [introduction to RSelenium](week07/02-introduction-to-selenium.Rmd), [RSelenium example with the LSE website](week07/03-selenium-lse.Rmd)
 
 #### Seminar
 
