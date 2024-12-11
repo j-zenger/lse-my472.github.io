@@ -311,7 +311,7 @@ This session will offer an introduction to relational databases: structure, logi
 
 #### Seminar
 
-- Code: [SQL exercises](x), [solution](x)
+- Code: [SQL exercises](week10/03-exercises-sql.Rmd), [solution](week10/03-exercises-sql-solution.Rmd)
 
 #### Reading
 * Beaulieu. 2009. [_Learning SQL_](https://books.google.co.uk/books?hl=en&lr=&id=1PgCCVryjOQC&oi=fnd&pg=PR3&dq=learning+sql+alan&ots=X6M3Iaz1wO&sig=38Fp1kDlxM8TF7miw0K2CNcKib4#v=onepage&q=learning%20sql%20alan&f=false). O'Reilly. (Chapters 1, 3, 4, 5, 8)
@@ -326,8 +326,8 @@ This week covers how to set up and use relational databases in the cloud and fun
 
 #### Lecture
 
-- [Slides](x)
-- Code: [Creating own databases in the cloud](x), [querying large cloud databases](x), [MongoDB](x)
+- [Slides](week11/MY472-week11-nosql-and-cloud-db.pdf)
+- Code: [Creating own databases in the cloud](week11/01-bigquery-create-own-databases.Rmd), [querying large cloud databases](week11/02-bigquery-examples.Rmd), [MongoDB](week11/03-mongodb-demo.Rmd)
 
 #### Seminar
 
